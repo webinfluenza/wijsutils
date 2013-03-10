@@ -12,7 +12,7 @@
         }
     } );
 
-    test( 'wiChunkArray return splitted Array or unchanged object', 2, function() {
+    test( 'return splitted Array or unchanged object', 2, function() {
         // valid run with a valid array
         deepEqual( $.wiChunkArray( this.testArray, 3 ), [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]], 'Should return an array of 4 arrays' );
 
