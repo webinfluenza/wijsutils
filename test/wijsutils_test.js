@@ -1,62 +1,22 @@
-(function($) {
-  /*
-    ======== A Handy Little QUnit Reference ========
-    http://api.qunitjs.com/
+( function( $ ) {
+    /*
+        ======== A Handy Little QUnit Reference ========
+        http://api.qunitjs.com/
+    */
 
-    Test methods:
-      module(name, {[setup][ ,teardown]})
-      test(name, callback)
-      expect(numberOfAssertions)
-      stop(increment)
-      start(decrement)
-    Test assertions:
-      ok(value, [message])
-      equal(actual, expected, [message])
-      notEqual(actual, expected, [message])
-      deepEqual(actual, expected, [message])
-      notDeepEqual(actual, expected, [message])
-      strictEqual(actual, expected, [message])
-      notStrictEqual(actual, expected, [message])
-      throws(block, [expected], [message])
-  */
+    module( 'jQuery#chunkArray', {
+        // setting up some basic stuff for this module
+        setup: function() {
+            this.testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            this.testObject = {'foo': 'bar', 'bar': 'baz', 'baz': 'foo'};
+        }
+    } );
 
-  module('jQuery#awesome', {
-    // This will run before each test in this module.
-    setup: function() {
-      this.elems = $('#qunit-fixture').children();
-    }
-  });
+    test( 'returns log message', 2, function() {
+        // valid run with a valid array
+        deepEqual( $.wiChunkArray( this.testArray, 3 ), [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]], 'Should return an array of 4 arrays' );
 
-  test('is chainable', function() {
-    expect(1);
-    // Not a bad test to run on collection methods.
-    strictEqual(this.elems.awesome(), this.elems, 'should be chainable');
-  });
-
-  test('is awesome', function() {
-    expect(1);
-    strictEqual(this.elems.awesome().text(), 'awesome0awesome1awesome2', 'should be awesome');
-  });
-
-  module('jQuery.awesome');
-
-  test('is awesome', function() {
-    expect(2);
-    strictEqual($.awesome(), 'awesome.', 'should be awesome');
-    strictEqual($.awesome({punctuation: '!'}), 'awesome!', 'should be thoroughly awesome');
-  });
-
-  module(':awesome selector', {
-    // This will run before each test in this module.
-    setup: function() {
-      this.elems = $('#qunit-fixture').children();
-    }
-  });
-
-  test('is awesome', function() {
-    expect(1);
-    // Use deepEqual & .get() when comparing jQuery objects.
-    deepEqual(this.elems.filter(':awesome').get(), this.elems.last().get(), 'knows awesome when it sees it');
-  });
-
-}(jQuery));
+        // invalid run with an object instead of an array
+        deepEqual( $.wiChunkArray( this.testObject, 3 ), this.testObject, 'Should return an unchanged object' );
+    } );
+}( jQuery ) );
