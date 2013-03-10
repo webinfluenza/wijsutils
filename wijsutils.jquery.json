@@ -1,0 +1,27 @@
+{
+  "name": "wijsutils",
+  "title": "WebInfluenza JavaScript Utils",
+  "description": "JavaScript and jQuery Utils, that will be needed from time to time on multiple projects",
+  "version": "0.1.0",
+  "homepage": "http://www.webinfluenza.de",
+  "author": {
+    "name": "Benno Mielke",
+    "email": "look@webinfluenza.de",
+    "url": "http://www.guardian-online.de"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/webinfluenza/wijsutils.git"
+  },
+  "bugs": "https://github.com/webinfluenza/wijsutils/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.webinfluenza.de/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=1.8.3"
+  },
+  "keywords": []
+}
