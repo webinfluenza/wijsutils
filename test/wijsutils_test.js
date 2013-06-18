@@ -19,4 +19,21 @@
         // invalid run with an object instead of an array
         deepEqual( $.wiChunkArray( this.testObject, 3 ), this.testObject, 'Should return an unchanged object' );
     } );
+
+    module( 'isWhat', {
+        // apply some different types
+        setup: function() {
+            this.o = {a: "b", c: "d"};
+            this.a = ["b", "d"];
+            this.i = 12;
+            this.s = "a";
+        }
+    } );
+
+    test( 'test different objects', 4, function() {
+        deepEqual( $.wiIsWhat( this.o ), "object" );
+        deepEqual( $.wiIsWhat( this.a ), "array" );
+        deepEqual( $.wiIsWhat( this.i ), "number" );
+        deepEqual( $.wiIsWhat( this.s ), "string" );
+    } );
 }( jQuery ) );

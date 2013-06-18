@@ -8,18 +8,47 @@
 
 ;( function( $, undefined ) {
     /**
+     * some global stuff, namespaced
+     **/
+    var wiGlobalSpace = {
+        objectTypes: {
+            '[object Object]': 'object',
+            '[object Array]': 'array',
+            '[object Number]': 'number',
+            '[object String]': 'string'
+        }
+    };
+    /**
      * this method splits arrays in X subarrays / chunks
      * will not run on IE < 8
      **/
     $.wiChunkArray = function( array, size ) {
         // is array parameter is actually an array, map into chunks
         // else return the given object untouched
-        size = size || array.length || 1;
+        if( array.length ) {
+            // way faster implementation then the old one
+            var results = [];
 
-        return (typeof array !== 'undefined' && array.constructor === Array) ? [].concat.apply( [],
-            array.map( function( el, idx ) {
-                return idx % size ? [] : [array.slice( idx, idx + size )];
-            } )
-        ) : array;
+            while( array.length ) {
+                results.push( array.splice( 0, size ) );
+            }
+
+            return results;
+        } else {
+            return array;
+        }
+    };
+
+    /**
+     * check what kind of object we've here and
+     * return the value
+     * @TODO: think about a proper return value, if the parameter was not passed
+     **/
+    $.wiIsWhat = function( input ) {
+        if( typeof input !== 'undefined' ) {
+            return wiGlobalSpace.objectTypes[Object.prototype.toString.call( input )];
+        } else {
+            return "invalid";
+        }
     };
 }( jQuery ) );
