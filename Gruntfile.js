@@ -1,17 +1,20 @@
 'use strict';
- 
+
 module.exports = function( grunt ) {
+    // load grunt tasks dynamicallay
+    require( 'matchdep' ).filterDev( 'grunt-*' ).forEach( grunt.loadNpmTasks );
+
     // Project configuration.
     grunt.initConfig( {
         // Metadata.
         pkg: grunt.file.readJSON( 'wijsutils.jquery.json' ),
-        
+
         banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
         '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
         '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
         ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
-        
+
         // Task configuration.
         clean: {
             files: ['dist']
@@ -36,7 +39,7 @@ module.exports = function( grunt ) {
         dist: {
             src: '<%= concat.dist.dest %>',
             dest: 'dist/<%= pkg.name %>.min.js'
-            } 
+            }
         },
 
         // initial version, so there aren't unit tests yet
@@ -80,14 +83,6 @@ module.exports = function( grunt ) {
             },
         },
     } );
-
-    // These plugins provide necessary tasks.
-    grunt.loadNpmTasks( 'grunt-contrib-clean' );
-    grunt.loadNpmTasks( 'grunt-contrib-concat' );
-    grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-    grunt.loadNpmTasks( 'grunt-contrib-qunit' );
-    grunt.loadNpmTasks( 'grunt-contrib-jshint' );
-    grunt.loadNpmTasks( 'grunt-contrib-watch' );
 
     // Default task.
     grunt.registerTask( 'default', ['jshint', 'clean', 'qunit', 'concat', 'uglify'] );
