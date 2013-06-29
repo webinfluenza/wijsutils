@@ -1,0 +1,16 @@
+{
+    "name": "wijsutils",
+    "version": "0.1.0",
+    "ignore": [
+        ".jshintrc",
+        ".gitignore"
+    ],
+    "dependencies": {
+        "jquery": "http://code.jquery.com/jquery-1.9.1.min.js"
+    },
+    "devDependencies": {
+        "jquery-1.9.1": "http://code.jquery.com/jquery-1.9.1.js",
+        "qunit-js": "http://code.jquery.com/qunit/qunit-1.12.0.js",
+        "qunit-css": "http://code.jquery.com/qunit/qunit-1.12.0.css"
+    }
+}

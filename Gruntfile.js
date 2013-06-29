@@ -16,6 +16,19 @@ module.exports = function( grunt ) {
         ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
 
         // Task configuration.
+        bower: {
+            install: {
+                options: {
+                    targetDir: './libs',
+                    install: true,
+                    verbose: true,
+                    cleanTragetDir: true,
+                    cleanBowerDir: true
+                }
+                // just run grunt bower:install and you'll see files from your Bower packages in lib dir
+            }
+        },
+
         clean: {
             files: ['dist']
         },

@@ -1,6 +1,13 @@
 {
   "name": "jquery-plugin",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/webinfluenza/wijsutils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webinfluenza/wijsutils/issues"
+  },
   "engines": {
     "node": ">= 0.8.0"
   },
@@ -15,6 +22,7 @@
     "grunt-contrib-watch": "~0.2.0",
     "grunt-contrib-clean": "~0.4.0",
     "grunt": "~0.4.1",
-    "matchdep": "~0.1.2"
+    "matchdep": "~0.1.2",
+    "grunt-bower-task": "~0.2.3"
   }
 }
