@@ -6,7 +6,6 @@
         ".gitignore"
     ],
     "dependencies": {
-        "jquery": "http://code.jquery.com/jquery-1.9.1.min.js"
     },
     "devDependencies": {
         "jquery-1.9.1": "http://code.jquery.com/jquery-1.9.1.js",
