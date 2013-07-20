@@ -3,18 +3,44 @@
 JavaScript and jQuery Utils, that will be needed from time to time on multiple projects
 
 ## Getting Started
-It's quite simple. Just include the file dist/wijsutils.js and have phun.
+It's quite simple. Just include the file ```dist/wijsutils.js``` and have phun.
 
 ## Documentation
+### wiUtils.wiFuzzyCompare
+Compare (simple) objects.
+
+#### Signature
+```javascript
+wiUtils.wiFuzzyCompare( refObj, obj, keyArray );
+```
+
+* ```refObj``` (__required__, Object) Reference object for the keys and values
+* ```obj``` (__required__, Object) The object that will be tested against the ```refObj```
+* ```keyArray``` (__optional__, Array) String Array with keys that will be used for comparison
+
+If you pass the ```keyArray```, the function will only compare these keys for comparison.
+
+#### Examples
+```javascript
+var a = {foo: 'foo', bar: 1, baz: 1.2},
+    b = {foo: 'foo', bar: 1, baz: 1.2},
+    c = {foo: 'foo', bar: 1};
+
+wiUtils.wiFuzzyCompare( a, b ); // will return true
+wiUtils.wiFuzzyCompare( a, c ); // will return false (baz is not in object c)
+wiUtils.wiFuzzyCompare( a, c, ['foo', 'bar'] ); // will return true
+```
+
 ### wiUtils.wiElementsByClass
 Get DOM elements by class name with a real fast selection algorithm (based on a work of [Dustin Diaz](http://www.dustindiaz.com/getelementsbyclass/))
 #### Signature
 ```javascript
 wiUtils.wiElementsByClass( cssClass, nodeElement, tagName );
 ```
-* ```cssClass``` (String, __required__) find elements with this class
-* ```nodeElement``` (HTMLElement, __optional__, default: ```document```) the context element
-* ```tagName``` (String, __optional__, default: ```*```) identifies the tag name (like ```div```) of the element
+
+* ```cssClass``` (__required__, String) find elements with this class
+* ```nodeElement``` (__optional__, HTMLElement, default: ```document```) the context element
+* ```tagName``` (__optional__, String, default: ```*```) identifies the tag name (like ```div```) of the element
 
 If you want to pass the ```tagName```, but not the ```nodeElement```, just set ```null``` for the second parameter.
 
