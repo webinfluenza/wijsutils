@@ -2,7 +2,7 @@
   "name": "wijsutils",
   "title": "WebInfluenza JavaScript Utils",
   "description": "JavaScript and jQuery Utils, that will be needed from time to time on multiple projects",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "http://www.webinfluenza.de",
   "author": {
     "name": "Benno Mielke",

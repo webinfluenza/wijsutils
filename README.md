@@ -6,6 +6,14 @@ JavaScript and jQuery Utils, that will be needed from time to time on multiple p
 It's quite simple. Just include the file ```dist/wijsutils.js``` and have phun.
 
 ## Documentation
+### Enable / disable debug information
+You can enable or disable ```console``` debug information with:
+
+```javascript
+wiUtils.wiSetDebugOutput( true ); // Debug information enabled
+wiUtils.wiSetDebugOutput( false ); // Debug information disabled
+```
+
 ### wiUtils.wiFuzzyCompare
 Compare (simple) objects.
 
@@ -83,4 +91,5 @@ console.log( wiUtils.wiIsWhat( s ) === 'string' );
 ## Release History
 Date | Version | Release Notes
 :------------|:-------:|:-----
+2013-07-20 | 0.3.0 | added ```wiUtils.wiFuzzyCompare()``` for object comparison
 2013-07-07 | 0.2.0 | added ```wiUtils.wiElementsByClass()``` to select elements by class real fast

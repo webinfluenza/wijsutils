@@ -1,4 +1,4 @@
-/*! WebInfluenza JavaScript Utils - v0.2.0 - 2013-07-20
+/*! WebInfluenza JavaScript Utils - v0.3.0 - 2013-07-20
 * http://www.webinfluenza.de
 * Copyright (c) 2013 Benno Mielke; Licensed MIT */
 // @TODO: get rid of jQuery, use only vanilla JavaScript
@@ -10,12 +10,21 @@
          * some global stuff, namespaced
          **/
         wiGlobalSpace: {
+            isDebug: false,
             objectTypes: {
                 '[object Object]': 'object',
                 '[object Array]': 'array',
                 '[object Number]': 'number',
                 '[object String]': 'string'
             }
+        },
+
+        /**
+         * Enable / disable debug output (console)
+         * @param  {Boolean} showDebug If set to true, errors and warning will be shown in the console
+         */
+        wiSetDebugOutput: function( showDebug ) {
+            this.wiGlobalSpace.isDebug = showDebug;
         },
 
         /**
@@ -51,6 +60,10 @@
                     throw new TypeError( '[wiIsWhat] Passed argument from unknown type!' );
                 }
             } catch( error ) {
+                if( this.wiGlobalSpace.isDebug ) {
+                    console.error( error );
+                }
+
                 return false;
             }
         },
@@ -177,6 +190,10 @@
                     throw new TypeError( '[wiFuzzyCompare] Called with invalid arguments count!' );
                 }
             } catch( error ) {
+                if( this.wiGlobalSpace.isDebug ) {
+                    console.error( error );
+                }
+
                 return false;
             }
         }

@@ -15,12 +15,21 @@
          * some global stuff, namespaced
          **/
         wiGlobalSpace: {
+            isDebug: false,
             objectTypes: {
                 '[object Object]': 'object',
                 '[object Array]': 'array',
                 '[object Number]': 'number',
                 '[object String]': 'string'
             }
+        },
+
+        /**
+         * Enable / disable debug output (console)
+         * @param  {Boolean} showDebug If set to true, errors and warning will be shown in the console
+         */
+        wiSetDebugOutput: function( showDebug ) {
+            this.wiGlobalSpace.isDebug = showDebug;
         },
 
         /**
@@ -56,6 +65,10 @@
                     throw new TypeError( '[wiIsWhat] Passed argument from unknown type!' );
                 }
             } catch( error ) {
+                if( this.wiGlobalSpace.isDebug ) {
+                    console.error( error );
+                }
+
                 return false;
             }
         },
@@ -182,6 +195,10 @@
                     throw new TypeError( '[wiFuzzyCompare] Called with invalid arguments count!' );
                 }
             } catch( error ) {
+                if( this.wiGlobalSpace.isDebug ) {
+                    console.error( error );
+                }
+
                 return false;
             }
         }
