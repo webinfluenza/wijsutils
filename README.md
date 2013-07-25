@@ -91,5 +91,6 @@ console.log( wiUtils.wiIsWhat( s ) === 'string' );
 ## Release History
 Date | Version | Release Notes
 :------------|:-------:|:-----
+2013-07-25 | 0.3.1 | recursive comparison in ```wiUtils.wiFuzzyCompare()``` for nested objects
 2013-07-20 | 0.3.0 | added ```wiUtils.wiFuzzyCompare()``` for object comparison
 2013-07-07 | 0.2.0 | added ```wiUtils.wiElementsByClass()``` to select elements by class real fast
