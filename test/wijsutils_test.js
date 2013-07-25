@@ -65,22 +65,29 @@
             this.objC = {foo: 'foo', bar: 1};
             this.objD = {bar: 1, foo: 'foo', baz: 1.2};
             this.objE = {bar: 2, foo: 'not foo', baz: 12};
+            this.objF = {foo: 'not foo', bar: 2, baz: {qux: 'qux', quux: 'quux'}};
+            this.objG = {foo: 'not foo', bar: 2, baz: {qux: 'qux', quux: 'quux'}};
+            this.objH = {foo: 'not foo', bar: 2, baz: {qux: 'qux', quux: 'not quux'}};
 
             this.arrA = ['foo', 'bar', 'baz'];
             this.arrB = ['foo', 'bar'];
         }
     } );
 
-    test( 'compare objects without keyArray', 5, function() {
+    test( 'compare objects without keyArray', 7, function() {
         equal( wiUtils.wiFuzzyCompare( this.objA, this.objB ), true, 'Normal, identical objects' );
         equal( wiUtils.wiFuzzyCompare( this.objA, this.objC ), false, 'Normal, not equal' );
         equal( wiUtils.wiFuzzyCompare( this.objA, this.objD ), true, 'Normal, other order, equal' );
         equal( wiUtils.wiFuzzyCompare( this.objA, this.objE ), false, 'Normal, same keys, different values, not equal' );
         equal( wiUtils.wiFuzzyCompare( this.objA, this.arrA ), false, 'Normal, called with Array, not equal' );
+        equal( wiUtils.wiFuzzyCompare( this.objF, this.objG ), true, 'Nested, identical, equal' );
+        equal( wiUtils.wiFuzzyCompare( this.objF, this.objH ), false, 'Nested, not equal' );
     } );
 
-    test( 'compare objects with keyArray', 2, function() {
+    test( 'compare objects with keyArray', 4, function() {
         equal( wiUtils.wiFuzzyCompare( this.objA, this.objB, this.arrA ), true, 'Equal objects, equal keys' );
         equal( wiUtils.wiFuzzyCompare( this.objA, this.objC, this.arrB ), true, 'Not equal objects, with keyArray, key / values are equal' );
+        equal( wiUtils.wiFuzzyCompare( this.objF, this.objG, this.arrA ), true, 'Equal nested objects, with keyArray, key / values are equal' );
+        equal( wiUtils.wiFuzzyCompare( this.objF, this.objH, this.arrA ), false, 'Not Equal nested objects, with keyArray, key / values are equal' );
     } );
 }( jQuery ) );

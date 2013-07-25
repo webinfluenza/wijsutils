@@ -9,7 +9,7 @@
 // @TODO: get rid of jQuery, use only vanilla JavaScript
 
 /*jshint unused: true */
-;( function( $, undefined ) {
+;( function( undefined ) {
     var wiUtils = {
         /**
          * some global stuff, namespaced
@@ -118,13 +118,14 @@
          * that keyArray entries (properties) are valid properties of
          * refObj!
          * @todo   Think about a more generic object handling (introducing Number, Date, String, Array)
-         * @todo   What if an object has nested objects?
          * @param  {Object} refObj  the reference object to compare to
          * @param  {Object} obj     the object that will be tested
          * @param  {Array} keyArray (optional) Array with keys that will be compared to
          * @return {Boolean}        true if the objects are equal, otherwise false
          */
         wiFuzzyCompare: function( refObj, obj, keyArray ) {
+            var self = this;
+
             /**
              * Check if keyArray is set. If so, we need to compare only the given keys.
              */
@@ -133,10 +134,29 @@
                     keyCount = keyArray.length; // cache the length of the key array
 
                 for( var i = 0, iMax = keyCount; i < iMax; i += 1 ) {
+                    var actualReferenceEntry = refObj[keyArray[i]],
+                        actualCompareEntry = obj[keyArray[i]];
+
+                    /**
+                     * if the value of the current key is an actual object,
+                     * then we can't compare with ===, we need some recursion here
+                     */
+                    if( typeof actualReferenceEntry !== 'undefined' && actualReferenceEntry.constructor === Object ) {
+                        if( self.wiFuzzyCompare( actualReferenceEntry, actualCompareEntry ) ) {
+                            matchCount++;
+                        }
+
+                        /**
+                         * continue, that the next if won't be executed, because objects
+                         * can't be compared with ===
+                         */
+                        continue;
+                    }
+
                     /**
                      * is the property set in the obj and are both value equal?
                      */
-                    if( typeof obj[keyArray[i]] !== 'undefined' && refObj[keyArray[i]] === obj[keyArray[i]] ) {
+                    if( typeof actualCompareEntry !== 'undefined' && actualReferenceEntry === actualCompareEntry ) {
                         matchCount++;
                     }
                 }
@@ -168,6 +188,17 @@
                              * iteration.
                              */
                             if( refObj[key].constructor === Function ) {
+                                continue;
+                            }
+
+                            /**
+                             * testing nested objects with recursion
+                             * continue statement is needed here, that the next
+                             * if won't be checked (would set isEqual to false, because
+                             * objects can't be compared with ===)
+                             */
+                            if( refObj[key].constructor === Object ) {
+                                isEqual = self.wiFuzzyCompare( refObj[key], obj[key] );
                                 continue;
                             }
 
@@ -205,4 +236,4 @@
     };
 
     window.wiUtils = wiUtils || {};
-}( jQuery ) );
+}() );
